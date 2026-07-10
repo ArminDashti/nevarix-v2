@@ -1,0 +1,13 @@
+agent_name: "agent-2"
+server_alias: "dev-agent-2"
+grpc_listen: ":9444"
+log_root_dir: "/var/log/nvx"
+cache_dir: "/var/cache/nvx/outbound"
+metrics_interval_sec: 15
+hub_endpoints:
+  - "hub:9443"
+mdns_enabled: false
+tls:
+  cert_file: "/etc/nvx/certs/agent.crt"
+  key_file: "/etc/nvx/certs/agent.key"
+  ca_file: "/etc/nvx/certs/ca.crt"

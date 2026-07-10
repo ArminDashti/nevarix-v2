@@ -1,0 +1,14 @@
+version: v2
+managed:
+  enabled: true
+  go_package_prefix:
+    default: github.com/nevarix/nevarix-v2/apps/hub/internal/pb
+plugins:
+  - remote: buf.build/protocolbuffers/go
+    out: ../../apps/hub/internal/pb
+    opt:
+      - paths=source_relative
+  - remote: buf.build/grpc/go
+    out: ../../apps/hub/internal/pb
+    opt:
+      - paths=source_relative

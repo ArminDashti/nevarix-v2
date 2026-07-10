@@ -1,0 +1,10 @@
+hub_name: "hub-1"
+grpc_listen: ":9443"
+log_root_dir: "/var/log/nvx"
+db_path: "/var/lib/nvx/hub.db"
+cache_dir: "/var/cache/nvx/outbound"
+mdns_enabled: true
+tls:
+  cert_file: "/etc/nvx/certs/hub.crt"
+  key_file: "/etc/nvx/certs/hub.key"
+  ca_file: "/etc/nvx/certs/ca.crt"

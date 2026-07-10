@@ -1,0 +1,12 @@
+FROM golang:1.23-bookworm AS builder
+WORKDIR /src
+COPY apps/agent/go.mod apps/agent/go.sum* ./apps/agent/
+COPY apps/agent ./apps/agent
+WORKDIR /src/apps/agent
+RUN go mod download && CGO_ENABLED=0 go build -o /nvx-agent ./cmd/nvx-agent
+
+FROM debian:bookworm-slim
+RUN apt-get update && apt-get install -y ca-certificates && rm -rf /var/lib/apt/lists/*
+COPY --from=builder /nvx-agent /usr/local/bin/nvx-agent
+EXPOSE 9444
+CMD ["nvx-agent", "serve"]

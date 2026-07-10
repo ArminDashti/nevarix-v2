@@ -1,0 +1,57 @@
+version: "3.9"
+
+services:
+  hub:
+    build:
+      context: ..
+      dockerfile: deploy/docker/Dockerfile.hub
+    container_name: nvx-hub-dev
+    ports:
+      - "9443:9443"
+    volumes:
+      - hub-data:/var/lib/nvx
+      - hub-log:/var/log/nvx
+      - hub-cache:/var/cache/nvx
+    networks:
+      - nvx-net
+
+  agent-1:
+    build:
+      context: ..
+      dockerfile: deploy/docker/Dockerfile.agent
+    container_name: nvx-agent-1-dev
+    environment:
+      NVX_CONFIG: /etc/nvx/agent.yaml
+    ports:
+      - "9444:9444"
+    depends_on:
+      - hub
+    volumes:
+      - ./agent-1.yaml:/etc/nvx/agent.yaml:ro
+    networks:
+      - nvx-net
+
+  agent-2:
+    build:
+      context: ..
+      dockerfile: deploy/docker/Dockerfile.agent
+    container_name: nvx-agent-2-dev
+    environment:
+      NVX_CONFIG: /etc/nvx/agent.yaml
+    ports:
+      - "9445:9444"
+    depends_on:
+      - hub
+    volumes:
+      - ./agent-2.yaml:/etc/nvx/agent.yaml:ro
+    networks:
+      - nvx-net
+
+networks:
+  nvx-net:
+    driver: bridge
+
+volumes:
+  hub-data:
+  hub-log:
+  hub-cache:

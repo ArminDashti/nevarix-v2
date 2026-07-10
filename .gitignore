@@ -1,0 +1,64 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+out/
+bin/
+
+# Go
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+vendor/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+*.tmp
+*.swp
+
+# IDE
+.vscode/
+.idea/
+
+# Electron
+apps/manager/release/
+
+# TLS dev certs
+certs/
+*.pem
+*.crt
+*.key
+
+# SQLite
+*.db
+*.db-journal
+
+# Protobuf generated (optional — uncomment if not committing stubs)
+# apps/hub/internal/pb/
+# apps/agent/internal/pb/
+# apps/manager/src/shared/pb/
+
+# Coverage
+coverage/
+
+# Docker
+.docker/
+
+# Cache
+.var/cache/

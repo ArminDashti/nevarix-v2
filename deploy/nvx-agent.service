@@ -1,0 +1,15 @@
+[Unit]
+Description=Nevarix Agent Service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/local/bin/nvx-agent serve
+Restart=on-failure
+RestartSec=5
+Environment=NVX_CONFIG=/etc/nvx/agent.yaml
+
+[Install]
+WantedBy=multi-user.target

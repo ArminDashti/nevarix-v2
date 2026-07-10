@@ -1,0 +1,15 @@
+[Unit]
+Description=Nevarix Hub Service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/local/bin/nvx-hub serve
+Restart=on-failure
+RestartSec=5
+Environment=NVX_CONFIG=/etc/nvx/hub.yaml
+
+[Install]
+WantedBy=multi-user.target
